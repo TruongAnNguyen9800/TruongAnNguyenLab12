@@ -1,4 +1,6 @@
 package truongan.nguyen.n01639800.lab12;
 
-public class NguyenFragment {
+import androidx.fragment.app.Fragment;
+
+public class NguyenFragment extends Fragment {
 }

@@ -3,6 +3,7 @@
 package truongan.nguyen.n01639800.lab12;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -30,10 +31,14 @@ public class TruongAnActivity12 extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, fragmentList);
         viewPager.setAdapter(adapter);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         TabLayout tabLayout = findViewById(R.id.TrutabLayout);
+        String[] tabNames = new String[] {"Truong An", "Nguyen", "N01639800", "TN"};
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
-                    tab.setText(getString(R.string.tab) + (position + 1));
+                    tab.setText(tabNames[position]);
                 }
         ).attach();
     }

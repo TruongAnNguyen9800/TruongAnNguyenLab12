@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "72677209285",
+    "project_id": "truonganlab1011",
+    "storage_bucket": "truonganlab1011.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72677209285:android:f1df24852390eb5fa36cac",
+        "android_client_info": {
+          "package_name": "truongan.nguyen.n01639800.lab12"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEUyyDBwQSQRj7Rcq2ceZbHzbNnss2_M0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,4 +3,15 @@
     <string name="tab">Tab </string>
     <string name="contacts">Contacts</string>
     <string name="contacts_count">Number of contacts: %d</string>
+    <string name="full_name_and_number">Truong An Nguyen N01639800</string>
+    <string name="deleted_course">Deleted course: </string>
+    <string name="empty">Empty not allowed</string>
+    <string name="error_add">Error adding course</string>
+    <string name="course_added">Course added</string>
+    <string name="add_failed">Failed adding course</string>
+    <string name="can_not_delete">No data to delete.</string>
+    <string name="all_deleted">All courses deleted</string>
+    <string name="failed_to_deleted">Failed to delete data</string>
+    <string name="failed_to_load">Failed to load courses:</string>
+    <string name="invalid_name">Invalid course name format</string>
 </resources>

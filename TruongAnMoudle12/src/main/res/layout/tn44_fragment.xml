@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sms_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="#211717">
 
     <TextView
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Truong"
+        android:text="Truong An"
         android:textColor="#FF0000"
         android:textSize="18sp"
+        android:textStyle="bold|italic"
         android:rotation="45"
-        android:textStyle="bold|italic" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp" />
 
     <TextView
         android:id="@+id/lastName"
@@ -23,31 +29,46 @@
         android:text="Nguyen"
         android:textColor="#0000FF"
         android:textSize="18sp"
+        android:textStyle="bold|italic"
         android:rotation="-45"
-        android:textStyle="bold|italic" />
+        app:layout_constraintTop_toTopOf="@id/firstName"
+        app:layout_constraintStart_toEndOf="@id/firstName"
+        android:layout_marginStart="32dp" />
 
     <EditText
         android:id="@+id/phoneInput"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Enter phone number"
-        android:inputType="number"
-        android:maxLength="10" />
+        android:inputType="phone"
+        android:maxLength="10"
+        app:layout_constraintTop_toBottomOf="@id/firstName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
 
     <EditText
         android:id="@+id/messageInput"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter message" />
+        android:hint="Enter message"
+        app:layout_constraintTop_toBottomOf="@id/phoneInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/sendBtn"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Send SMS"
         android:background="#00008B"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:padding="16dp" />
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/messageInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,7 +68,6 @@ public class TN44 extends Fragment {
         return view;
     }
 
-    // Modern permission launcher
     private final androidx.activity.result.ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
@@ -95,7 +94,6 @@ public class TN44 extends Fragment {
         PendingIntent deliveredPI = PendingIntent.getBroadcast(context, 0,
                 new Intent(DELIVERED), PendingIntent.FLAG_IMMUTABLE);
 
-        // Register SMS sent receiver
         context.registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -123,7 +121,6 @@ public class TN44 extends Fragment {
             }
         }, new IntentFilter(SENT), Context.RECEIVER_NOT_EXPORTED);
 
-// Register SMS delivered receiver
         context.registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -138,7 +135,6 @@ public class TN44 extends Fragment {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phone, null, message, sentPI, deliveredPI);
 
-            // Clear fields after sending
             phoneInput.setText("");
             messageInput.setText("");
 

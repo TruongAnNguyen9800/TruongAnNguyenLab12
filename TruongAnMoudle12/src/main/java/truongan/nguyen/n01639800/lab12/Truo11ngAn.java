@@ -42,7 +42,6 @@ public class Truo11ngAn extends Fragment {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference coursesRef;
 
-    // Regex: 4 uppercase letters, hyphen, 3 or 4 digits
     private static final Pattern COURSE_NAME_PATTERN =
             Pattern.compile("^[A-Z]{4}-\\d{3,4}$");
 

@@ -28,12 +28,18 @@ public class N0163339800 extends Fragment {
     private AdView adView;
     private int adClickCount = 0;
 
-    private final String[] websites = {
-            getString(R.string.select_url),
-            "https://www.youtube.com/",
-            "https://arcaea.lowiro.com/en",
-            "https://www.leagueoflegends.com/en-us/"
-    };
+    private String[] websites;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        websites = new String[]{
+                getString(R.string.select_url),
+                "https://www.youtube.com/",
+                "https://arcaea.lowiro.com/en",
+                "https://www.leagueoflegends.com/en-us/"
+        };
+    }
 
     @Nullable
     @Override

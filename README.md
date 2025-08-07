@@ -45,7 +45,7 @@ This Android app demonstrates the use of `TabLayout` with four custom fragments.
 
 ## 🧩 Fragment Details
 
-### 1️⃣ Jo11hn Fragment – Firebase Course Entry
+### 1️⃣ Truo11ngAn Fragment – Firebase Course Entry
 
 - Displays:
   - Centered TextView with **Full Name + Student ID** (bold, italic, red)
@@ -62,7 +62,7 @@ This Android app demonstrates the use of `TabLayout` with four custom fragments.
 
 ---
 
-### 2️⃣ Sm22ith Fragment – Google Maps & Notification
+### 2️⃣ Ngu22yen Fragment – Google Maps & Notification
 
 - Shows:
   - Top TextView (Full Name + ID, blue, bold, italic)
@@ -84,7 +84,7 @@ This Android app demonstrates the use of `TabLayout` with four custom fragments.
 
 ---
 
-### 3️⃣ N01639800 Fragment – WebView + Banner Ads
+### 3️⃣ N0163339800 Fragment – WebView + Banner Ads
 
 - Components:
   - Top TextView (Welcome + ID)

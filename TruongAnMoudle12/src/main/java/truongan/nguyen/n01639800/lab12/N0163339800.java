@@ -29,7 +29,7 @@ public class N0163339800 extends Fragment {
     private int adClickCount = 0;
 
     private final String[] websites = {
-            "Local Welcome Page",
+            "Select URL from list",
             "https://www.youtube.com/",
             "https://arcaea.lowiro.com/en",
             "https://www.leagueoflegends.com/en-us/"

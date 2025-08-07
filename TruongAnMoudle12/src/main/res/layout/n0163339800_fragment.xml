@@ -6,15 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FFFFFFFF">
 
     <TextView
         android:id="@+id/labTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to Lab 12"
+        android:text="Embed web sites"
         android:textStyle="bold"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:textColor="#FF0000"
+        android:layout_gravity="center"/>
 
     <Spinner
         android:id="@+id/websiteSpinner"

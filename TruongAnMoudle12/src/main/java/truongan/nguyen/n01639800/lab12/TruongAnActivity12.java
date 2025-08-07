@@ -53,7 +53,7 @@ public class TruongAnActivity12 extends AppCompatActivity {
         ArrayList<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new Truo11ngAn());
         fragmentList.add(new Ngu22yen());
-        fragmentList.add(new N01639800Fragment());
+        fragmentList.add(new N0163339800());
         fragmentList.add(new TNFragment());
 
         ViewPager2 viewPager = findViewById(R.id.TruviewPager);

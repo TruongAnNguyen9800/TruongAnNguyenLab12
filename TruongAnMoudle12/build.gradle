@@ -43,5 +43,5 @@ dependencies {
     implementation platform(libs.firebase.bom)
     implementation libs.play.services.maps
     implementation libs.core
-
+    implementation libs.play.services.ads
 }

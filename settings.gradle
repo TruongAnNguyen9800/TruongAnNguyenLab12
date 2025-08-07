@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "TruongAnLab12"
-include ':TruongAnLab122'
+include ':TruongAnMoudle12'

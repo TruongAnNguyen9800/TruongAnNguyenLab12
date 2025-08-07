@@ -3,13 +3,12 @@ package truongan.nguyen.n01639800.lab12;
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -47,9 +45,7 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
     private final ActivityResultLauncher<String> permissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
-                    if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        mMap.setMyLocationEnabled(true);
-                    }
+                    enableMyLocation();
                 } else {
                     Snackbar.make(requireView(), "Location permission denied.", Snackbar.LENGTH_LONG).show();
                 }
@@ -79,26 +75,18 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
         this.mMap = googleMap;
 
         LatLng humber = new LatLng(43.7305, -79.6086);
-        MarkerOptions marker = new MarkerOptions()
+        Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(humber)
                 .title("Humber Polytechnic")
-                .snippet("Etobicoke - Truong An");
+                .snippet("Etobicoke - Truong An"));
 
-        googleMap.addMarker(marker);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(humber, 15f));
-        googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-            @Override
-            public View getInfoWindow(@NonNull Marker marker) {
-                return null;
-            }
+        if (marker != null) {
+            marker.showInfoWindow();
+        }
 
-            @Override
-            public View getInfoContents(@NonNull Marker marker) {
-                return null;
-            }
-        });
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(humber, 15f));
 
-        googleMap.setOnMapClickListener(this::handleMapClick);
+        mMap.setOnMapClickListener(this::handleMapClick);
 
         requestLocationPermission();
     }
@@ -112,19 +100,19 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
                 String addressStr = address.getAddressLine(0);
 
                 mMap.clear();
-                mMap.addMarker(new MarkerOptions()
-                                .position(latLng)
-                                .title("Selected Location")
-                                .snippet(addressStr)
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
-                        .showInfoWindow();
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .title("Truong An Nguyen")
+                        .snippet(addressStr)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                if (marker != null) marker.showInfoWindow();
+
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f));
 
                 infoTextView.setText(addressStr);
 
                 Snackbar.make(requireView(), addressStr, Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Dismiss", v -> {
-                        })
+                        .setAction("Dismiss", v -> {})
                         .show();
 
                 sendNotification(addressStr);
@@ -139,6 +127,13 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
                 != PackageManager.PERMISSION_GRANTED) {
             permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
         } else {
+            enableMyLocation();
+        }
+    }
+
+    private void enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
         }
     }
@@ -146,24 +141,35 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
     private void sendNotification(String address) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), CHANNEL_ID)
                 .setSmallIcon(android.R.drawable.ic_dialog_map)
-                .setContentTitle("Map Location Clicked")
+                .setContentTitle("Address Change")
                 .setContentText(address)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setVibrate(new long[]{0, 250, 250, 250})
-                .setSound(android.provider.Settings.System.DEFAULT_NOTIFICATION_URI);
+                .setAutoCancel(true)
+                .setVibrate(new long[]{0, 500, 500, 500})
+                .setSound(MediaStore.Audio.Media.INTERNAL_CONTENT_URI);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(requireContext());
-        notificationManager.notify(101, builder.build());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+        } else {
+            notificationManager.notify(101, builder.build());
+        }
     }
 
     private void createNotificationChannel() {
         CharSequence name = "Location Channel";
-        String description = "Shows location click notifications";
+        String description = "Notifications for clicked map locations";
         int importance = NotificationManager.IMPORTANCE_HIGH;
-
         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
         channel.setDescription(description);
+        channel.enableVibration(true);
+        channel.enableLights(true);
+
         NotificationManager notificationManager = requireContext().getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
+        if (notificationManager != null) {
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }

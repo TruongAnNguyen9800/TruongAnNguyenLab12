@@ -52,7 +52,7 @@ public class TruongAnActivity12 extends AppCompatActivity {
 
         ArrayList<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new Truo11ngAn());
-        fragmentList.add(new NguyenFragment());
+        fragmentList.add(new Ngu22yen());
         fragmentList.add(new N01639800Fragment());
         fragmentList.add(new TNFragment());
 

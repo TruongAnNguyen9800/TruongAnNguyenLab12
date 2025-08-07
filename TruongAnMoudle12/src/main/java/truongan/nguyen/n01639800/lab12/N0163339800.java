@@ -29,7 +29,7 @@ public class N0163339800 extends Fragment {
     private int adClickCount = 0;
 
     private final String[] websites = {
-            "Select URL from list",
+            getString(R.string.select_url),
             "https://www.youtube.com/",
             "https://arcaea.lowiro.com/en",
             "https://www.leagueoflegends.com/en-us/"
@@ -90,7 +90,7 @@ public class N0163339800 extends Fragment {
             @Override
             public void onAdClicked() {
                 adClickCount++;
-                Toast.makeText(requireContext(), "Truong An Nguyen: " + adClickCount, Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), getString(R.string.full_name_2) + adClickCount, Toast.LENGTH_SHORT).show();
             }
         });
     }

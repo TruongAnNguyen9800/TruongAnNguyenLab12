@@ -46,7 +46,7 @@ public class TruongAnActivity12 extends AppCompatActivity {
                     if (isGranted) {
                         openContacts();
                     } else {
-                        Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getString(R.string.permission_denied), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -64,7 +64,7 @@ public class TruongAnActivity12 extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TabLayout tabLayout = findViewById(R.id.TrutabLayout);
-        String[] tabNames = new String[] {"Truong An", "Nguyen", "N01639800", "TN"};
+        String[] tabNames = new String[] {getString(R.string.frag_1), getString(R.string.frag_2), getString(R.string.frag_3), getString(R.string.frag_4)};
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> tab.setText(tabNames[position])
         ).attach();
@@ -119,7 +119,7 @@ public class TruongAnActivity12 extends AppCompatActivity {
 
             return cursor != null ? cursor.getCount() : 0;
         } catch (SecurityException e) {
-            Toast.makeText(this, "Permission needed to read contacts", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.permission_contact), Toast.LENGTH_SHORT).show();
             return 0;
         } finally {
             if (cursor != null) {

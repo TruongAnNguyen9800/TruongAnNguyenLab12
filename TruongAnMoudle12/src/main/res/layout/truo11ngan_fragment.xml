@@ -22,7 +22,7 @@
         android:id="@+id/editTextCourseName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter course name"
+        android:hint="@string/enter_course_name"
         android:inputType="textCapCharacters"
         android:layout_marginBottom="16dp"/>
 
@@ -30,7 +30,7 @@
         android:id="@+id/editTextCourseDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter course description"
+        android:hint="@string/enter_course_description"
         android:inputType="text|textNoSuggestions"
         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .,!?-"
         android:layout_marginBottom="16dp"/>
@@ -46,13 +46,13 @@
             android:id="@+id/buttonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add" />
+            android:text="@string/add" />
 
         <Button
             android:id="@+id/buttonDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
+            android:text="@string/delete"
             android:layout_marginStart="16dp"/>
 
     </LinearLayout>

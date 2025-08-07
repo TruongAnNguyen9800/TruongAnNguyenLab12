@@ -47,7 +47,7 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
                 if (isGranted) {
                     enableMyLocation();
                 } else {
-                    Snackbar.make(requireView(), "Location permission denied.", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(requireView(), getString(R.string.location_denied), Snackbar.LENGTH_LONG).show();
                 }
             });
 
@@ -56,7 +56,7 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ngu22yen_fragment, container, false);
         infoTextView = view.findViewById(R.id.infoTextView);
-        infoTextView.setText("Truong An Nguyen - N01639800");
+        infoTextView.setText(getString(R.string.full_name_and_number));
         infoTextView.setTypeface(null, Typeface.BOLD_ITALIC);
         infoTextView.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_blue_dark));
 
@@ -77,8 +77,8 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
         LatLng humber = new LatLng(43.7305, -79.6086);
         Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(humber)
-                .title("Humber Polytechnic")
-                .snippet("Etobicoke - Truong An"));
+                .title(getString(R.string.school_name))
+                .snippet(getString(R.string.school_name_name)));
 
         if (marker != null) {
             marker.showInfoWindow();
@@ -102,7 +102,7 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
                 mMap.clear();
                 Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(latLng)
-                        .title("Truong An Nguyen")
+                        .title(getString(R.string.full_name))
                         .snippet(addressStr)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 if (marker != null) marker.showInfoWindow();
@@ -112,7 +112,7 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
                 infoTextView.setText(addressStr);
 
                 Snackbar.make(requireView(), addressStr, Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Dismiss", v -> {})
+                        .setAction(getString(R.string.dismiss), v -> {})
                         .show();
 
                 sendNotification(addressStr);
@@ -141,7 +141,7 @@ public class Ngu22yen extends Fragment implements OnMapReadyCallback {
     private void sendNotification(String address) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), CHANNEL_ID)
                 .setSmallIcon(android.R.drawable.ic_dialog_map)
-                .setContentTitle("Address Change")
+                .setContentTitle(getString(R.string.address_change))
                 .setContentText(address)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)

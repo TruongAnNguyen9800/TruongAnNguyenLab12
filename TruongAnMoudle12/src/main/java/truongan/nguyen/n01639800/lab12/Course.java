@@ -5,7 +5,6 @@ public class Course {
     private String name;
     private String description;
 
-    // Required empty constructor for firebase
     public Course() {}
 
     public Course(String id, String name, String description) {
@@ -14,7 +13,6 @@ public class Course {
         this.description = description;
     }
 
-    // Getter setters
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }

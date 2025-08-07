@@ -42,17 +42,17 @@ public class TN44 extends Fragment {
             String message = messageInput.getText().toString().trim();
 
             if (TextUtils.isEmpty(phone)) {
-                phoneInput.setError("can not be empty");
+                phoneInput.setError(getString(R.string.can_not_empty));
                 return;
             }
 
             if (phone.length() < 10) {
-                phoneInput.setError("must be 10 digits");
+                phoneInput.setError(getString(R.string.must_10_digits));
                 return;
             }
 
             if (TextUtils.isEmpty(message)) {
-                messageInput.setError("can not be empty");
+                messageInput.setError(getString(R.string.can_not_empty));
                 return;
             }
 
@@ -75,19 +75,19 @@ public class TN44 extends Fragment {
                     String message = messageInput.getText().toString();
                     sendSMS(phone, message);
                 } else {
-                    Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.permission_denied), Toast.LENGTH_SHORT).show();
                 }
             });
 
     private void sendSMS(String phone, String message) {
         Context context = getContext();
         if (context == null) {
-            Log.e(TAG, "Context is null, cannot send SMS");
+            Log.e(TAG, getString(R.string.need_context));
             return;
         }
 
-        String SENT = "SMS_SENT";
-        String DELIVERED = "SMS_DELIVERED";
+        String SENT = getString(R.string.sms_sent);
+        String DELIVERED = getString(R.string.sms_delivered);
 
         PendingIntent sentPI = PendingIntent.getBroadcast(context, 0,
                 new Intent(SENT), PendingIntent.FLAG_IMMUTABLE);
@@ -100,22 +100,22 @@ public class TN44 extends Fragment {
                 String toastMsg;
                 switch (getResultCode()) {
                     case android.app.Activity.RESULT_OK:
-                        toastMsg = "SMS sent";
+                        toastMsg = getString(R.string.sms_sent);
                         break;
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                        toastMsg = "Generic failure";
+                        toastMsg = getString(R.string.gen_failure);
                         break;
                     case SmsManager.RESULT_ERROR_NO_SERVICE:
-                        toastMsg = "No service";
+                        toastMsg = getString(R.string.no_service);
                         break;
                     case SmsManager.RESULT_ERROR_NULL_PDU:
-                        toastMsg = "Null PDU";
+                        toastMsg = getString(R.string.null_pdu);
                         break;
                     case SmsManager.RESULT_ERROR_RADIO_OFF:
-                        toastMsg = "Radio off";
+                        toastMsg = getString(R.string.radio_off);
                         break;
                     default:
-                        toastMsg = "Unknown error";
+                        toastMsg = getString(R.string.unknown_error);
                 }
                 Toast.makeText(context, toastMsg, Toast.LENGTH_SHORT).show();
             }
@@ -126,7 +126,7 @@ public class TN44 extends Fragment {
             public void onReceive(Context context, Intent intent) {
                 Toast.makeText(context,
                         getResultCode() == android.app.Activity.RESULT_OK ?
-                                "SMS delivered" : "SMS not delivered", Toast.LENGTH_SHORT).show();
+                                getString(R.string.sms_delivered) : getString(R.string.sms_not_delivered), Toast.LENGTH_SHORT).show();
             }
         }, new IntentFilter(DELIVERED), Context.RECEIVER_NOT_EXPORTED);
 
@@ -139,8 +139,8 @@ public class TN44 extends Fragment {
             messageInput.setText("");
 
         } catch (Exception e) {
-            Toast.makeText(context, "SMS failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
-            Log.e(TAG, "sendSMS: Exception: ", e);
+            Toast.makeText(context, getString(R.string.sms_failed) + e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e(TAG, getString(R.string.sms_exception), e);
         }
     }
 }
